@@ -1,4 +1,4 @@
 #!/bin/bash
 # with macport --> port install coreutils
-find . -type f -exec gshred {} \;
+find . -type f | while read line; do gshred $line && dd if=/dev/zero of=$line bs=1k count=1024; done
 rm -rf $(pwd) && cd ..
