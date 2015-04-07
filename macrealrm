@@ -1,0 +1,4 @@
+#!/bin/bash
+# with macport --> port install coreutils
+find . -type f -exec gshred {} \;
+rm -rf $(pwd) && cd ..
