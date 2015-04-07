@@ -1,4 +1,4 @@
 #!/bin/bash
-# with macport --> port install coreutils
+# After you have installed macport run sudo port install coreutils
 find . -type f | while read line; do gshred $line && dd if=/dev/zero of=$line bs=1k count=1024; done
 rm -rf $(pwd) && cd ..
