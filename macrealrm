@@ -2,7 +2,20 @@
 # After you have installed macport run sudo port install coreutils
 if [ -z "$1" ]
   then
-    echo "No arguments supplied"
-  else
-    find $1 -type f | while read line; do dd if=/dev/zero of=$line bs=1k count=2048 && gshred $line && rm $line; done
+    echo "brm [options] <path>"
+    echo "  -r delete all folders"
+  else 
+    if [ "$1" == "-r" ]
+      then
+    	if [ -zd $2 ]
+    	  then
+      	   find $2 -type f | while read line; do dd if=/dev/zero of=$line bs=1k count=2048 && gshred $line; done
+      	   rm -rf $2
+    	fi   
+      else
+        if [ -d $1 ]
+         then
+          find $1 -type f | while read line; do dd if=/dev/zero of=$line bs=1k count=2048 && gshred $line && rm $line; done
+        fi
+    fi
 fi
