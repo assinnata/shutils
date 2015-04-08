@@ -1,4 +1,8 @@
 #!/bin/bash
 # After you have installed macport run sudo port install coreutils
-find . -type f | while read line; do dd if=/dev/zero of=$line bs=1k count=2048 && gshred $line; done
-rm -rf $(pwd) && cd ..
+if [ -z "$1" ]
+  then
+    echo "No arguments supplied"
+  else
+    find $1 -type f | while read line; do dd if=/dev/zero of=$line bs=1k count=2048 && gshred $line && rm $line; done
+find
