@@ -4,7 +4,8 @@ function help {
 }
 
 if [[ ( $# -eq 1 || $# -eq 2 )&& -d "$1" ]]; then
-	tar zcf "$1.tar.gz" $1
+	SPATH=$(sed "s/\///g" <<< $1)
+	tar zcf "$SPATH.tar.gz" $SPATH
 	if [[ $# -eq 2 && -d "$2" ]]; then
 		mv "$1.tar.gz" "$2"
 	else
